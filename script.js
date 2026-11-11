@@ -3,7 +3,9 @@ const dateInput = document.querySelector("#date");
 const yearLabel = document.querySelector("#year");
 
 const today = new Date();
-const localToday = new Date(today.getTime() - today.getTimezoneOffset() * 60_000)
+const localToday = new Date(
+  today.getTime() - today.getTimezoneOffset() * 60_000,
+)
   .toISOString()
   .slice(0, 10);
 
@@ -18,7 +20,8 @@ bookingForm.addEventListener("submit", (event) => {
   const formattedDate = new Intl.DateTimeFormat("pt-BR", {
     dateStyle: "long",
   }).format(date);
-  const piercing = formData.get("piercing") || "Ainda quero conversar sobre as opções";
+  const piercing =
+    formData.get("piercing") || "Ainda quero conversar sobre as opções";
   const message = [
     "Oi, Camila! Gostaria de solicitar um horário para colocação de piercing.",
     `Nome: ${formData.get("name")}`,
@@ -27,5 +30,9 @@ bookingForm.addEventListener("submit", (event) => {
     `Período ou horário: ${formData.get("time")}`,
   ].join("\n");
 
-  window.open(`https://wa.me/5535988234408?text=${encodeURIComponent(message)}`, "_blank", "noopener,noreferrer");
+  window.open(
+    `https://wa.me/5535988234408?text=${encodeURIComponent(message)}`,
+    "_blank",
+    "noopener,noreferrer",
+  );
 });
